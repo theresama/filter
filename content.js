@@ -24,16 +24,18 @@
 
 setInterval(function(){
   if (document.activeElement.name == "add_comment_text_text"){
+  	document.activeElement.onblur = function(){
+  		this.removeEventListener('keydown',arguments.callee,false)
+  	}
   	document.activeElement.addEventListener('keydown', function(e) {   
 	var e = window.event||e;
    	var key = e.keyCode ? e.keyCode : e.which;
-
-   		if (key === 13) {
-   			window.confirm("Are you sure you want to comment this?")
-   			e.preventDefault()
-   			e.stopPropagation();
-   			return false;
-   		}
+   		
+   		if (key === 13 && isOffensive(document.activeElement.value) && !window.confirm("Are you sure you want to comment this?")){
+   				e.preventDefault()
+   				e.stopPropagation();
+   				return false;
+   			}
    		}
 	);
 
@@ -49,8 +51,9 @@ setInterval(function(){
 var clickedPost = function(event)
 {
 	console.log(event);
+	var element = document.querySelectorAll('input[name=xhpc_message]')[0].value;
 	//event.preventDefault();
-	if (isOffensive()){
+	if (isOffensive(element)){
     var r = window.confirm("Are you sure you want to post this?");
     if( !r )
     	event.preventDefault();
@@ -73,14 +76,7 @@ setTimeout(function() {
 
 }, 500);
 
-var isOffensive = function(){
-
-	var element = document.querySelectorAll('input[name=xhpc_message]')[0].value;
-
-	if (document.querySelector('textarea[name="add_comment_text_text"]')){
-		element = document.querySelector('textarea[name="add_comment_text_text"]').value;
-	}
-
+var isOffensive = function(comment){
 
 	var bad = new Array();
 	bad[0] = /\w*fuck\w*/
@@ -95,7 +91,7 @@ var isOffensive = function(){
  	bad[9] = /\w*cunt\w*/
 
  	for (var i = bad.length - 1; i >= 0; i--) {
- 		if (bad[i].test(element))
+ 		if (bad[i].test(comment))
  			return true;
  	};
  	return false;
