@@ -9,7 +9,6 @@
     "popup": "popup.html"
   },
 
-
     "content_scripts": [
     {
       "matches": ["*://www.facebook.com/*"],
