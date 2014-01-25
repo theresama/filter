@@ -1,5 +1,5 @@
 {
-  "name": "thanks owen!!",
+  "name": "Filter",
   "version": "1.0",
   "manifest_version": 2,
   "description": "My first Chrome extension.",
@@ -12,7 +12,7 @@
 
     "content_scripts": [
     {
-      "matches": ["http://facebook.com/*", "https://www.facebook.com/*"],
+      "matches": ["*://www.facebook.com/*"],
       "js": ["content.js"]
     }
   ]
