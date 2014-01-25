@@ -26,7 +26,7 @@ var clickedPost = function()
 	}
 }
 
-setTimeout(function() {
+setInterval(function() {
 	//from the home page
 	element = document.querySelectorAll('button[value="1"][type="submit"]')[0]
 	parent = element.parentNode
@@ -53,6 +53,8 @@ var isOffensive = function(comment){
 	bad[8] = /\w*dick\w*/
 	bad[9] = /\w*cunt\w*/
 	bad[10] = /\w*kill\s*yourself\w*/
+	bad[11] = /\w*slut\w*/
+	bad[12] = /\w*whore\w*/
 
 
 	for (var i = bad.length - 1; i >= 0; i--) {
