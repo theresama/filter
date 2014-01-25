@@ -12,7 +12,7 @@
 //    		e.preventDefault()
 //        	if(isOffensive(lastInput)){
 //        		    var r = window.confirm("Are you sure you want to comment this?");
-//     			if( !r ){
+//     			if( !r ){ac
 //     				e.preventDefault()
 //     				pressed = false
 //     			}
@@ -21,17 +21,29 @@
 //    	lastInput = document.activeElement.value
 // }
 
-// window.addEventListener('keypress', function (e) {
-// 	if (e.keyCode == 13 && document.activeElement.name == "add_comment_text_text") {
-// 		e.preventDefault
-// 		element = document.activeElement.value
-// 		if (isOffensive(element)){
-//     		var r = window.confirm("Are you sure you want to post this?");
-//     	}
-//     	if( !r )
-//     	event.preventDefault();
-// 	}
-// }
+
+setInterval(function(){
+  if (document.activeElement.name == "add_comment_text_text"){
+  	document.activeElement.addEventListener('keydown', function(e) {   
+	var e = window.event||e;
+   	var key = e.keyCode ? e.keyCode : e.which;
+
+   		if (key === 13) {
+   			window.confirm("Are you sure you want to comment this?")
+   			e.preventDefault()
+   			e.stopPropagation();
+   			return false;
+   		}
+   		}
+	);
+
+
+
+	}
+}, 500);
+
+
+
 
 
 var clickedPost = function(event)
@@ -56,11 +68,18 @@ setTimeout(function() {
 	parent2 = element2.parentNode
 	element2.addEventListener('click', clickedPost)
 
+
+
+
 }, 500);
 
 var isOffensive = function(){
 
-	element = document.querySelectorAll('input[name=xhpc_message]')[0].value;
+	var element = document.querySelectorAll('input[name=xhpc_message]')[0].value;
+
+	if (document.querySelector('textarea[name="add_comment_text_text"]')){
+		element = document.querySelector('textarea[name="add_comment_text_text"]').value;
+	}
 
 
 	var bad = new Array();
@@ -81,9 +100,6 @@ var isOffensive = function(){
  	};
  	return false;
 }
-
-
-
 
 
 
