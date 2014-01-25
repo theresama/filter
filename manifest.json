@@ -2,17 +2,12 @@
   "name": "Filter",
   "version": "1.0",
   "manifest_version": 2,
-  "description": "My first Chrome extension.",
+  "description": "Prompts a second thoughts about a possibly unkind comment or post",
 
-  "browser_action": {
-    "default_icon": "icon.png",
-    "popup": "popup.html"
-  },
-
-    "content_scripts": [
-    {
-      "matches": ["*://www.facebook.com/*"],
-      "js": ["content.js"]
-    }
+  "content_scripts": [
+  {
+    "matches": ["*://www.facebook.com/*"],
+    "js": ["content.js"]
+  }
   ]
 }

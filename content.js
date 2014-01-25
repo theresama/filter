@@ -52,6 +52,8 @@ var isOffensive = function(comment){
 	bad[7] = /\w*nigger\w*/
 	bad[8] = /\w*dick\w*/
 	bad[9] = /\w*cunt\w*/
+	bad[10] = /\w*kill\s*yourself\w*/
+
 
 	for (var i = bad.length - 1; i >= 0; i--) {
 		if (bad[i].test(comment))
