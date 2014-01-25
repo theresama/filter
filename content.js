@@ -24,26 +24,21 @@
 
 setInterval(function(){
   if (document.activeElement.name == "add_comment_text_text"){
-  	document.activeElement.onblur = function(){
-  		this.removeEventListener('keydown',arguments.callee,false)
-  	}
-  	document.activeElement.addEventListener('keydown', function(e) {   
-	var e = window.event||e;
-   	var key = e.keyCode ? e.keyCode : e.which;
+
+  	document.activeElement.addEventListener('keydown', commentFunction);
+	}
+}, 500);
+
+var commentFunction = function(e){
+		var e = window.event||e;
+   		var key = e.keyCode ? e.keyCode : e.which;
    		
    		if (key === 13 && isOffensive(document.activeElement.value) && !window.confirm("Are you sure you want to comment this?")){
    				e.preventDefault()
    				e.stopPropagation();
    				return false;
    			}
-   		}
-	);
-
-
-
-	}
-}, 500);
-
+}
 
 
 
@@ -51,7 +46,7 @@ setInterval(function(){
 var clickedPost = function(event)
 {
 	console.log(event);
-	var element = document.querySelectorAll('input[name=xhpc_message]')[0].value;
+	var element = a
 	//event.preventDefault();
 	if (isOffensive(element)){
     var r = window.confirm("Are you sure you want to post this?");
